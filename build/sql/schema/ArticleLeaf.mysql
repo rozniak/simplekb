@@ -1,0 +1,17 @@
+/**                                                                       */
+/** ArticleLeaf.mysql - Knowledgebase Article Leaf-node                   */
+/**                                                                       */
+/** This source-code is part of the simplekb project - a simple PHP-based */
+/** knowledgebase by Oddmatics:                                           */
+/** <<https://www.oddmatics.uk>>                                          */
+/**                                                                       */
+/** Author(s): Rory Fewell <roryf@oddmatics.uk>                           */
+/**                                                                       */
+
+CREATE TABLE ArticleLeaf (
+    Id      BIGINT UNSIGNED NOT NULL,
+    Subject VARCHAR(120)    NOT NULL,
+    Url     VARCHAR(255)    NOT NULL,
+    CONSTRAINT ArticleLeaf_PK PRIMARY KEY (Id),
+    CONSTRAINT ArticleLeaf_AK UNIQUE (Subject)
+) ENGINE=InnoDb;

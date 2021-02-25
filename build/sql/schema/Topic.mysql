@@ -1,0 +1,18 @@
+/**                                                                       */
+/** Topic.mysql - Knowledgebase Topic                                     */
+/**                                                                       */
+/** This source-code is part of the simplekb project - a simple PHP-based */
+/** knowledgebase by Oddmatics:                                           */
+/** <<https://www.oddmatics.uk>>                                          */
+/**                                                                       */
+/** Author(s): Rory Fewell <roryf@oddmatics.uk>                           */
+/**                                                                       */
+
+CREATE TABLE Topic (
+    Id            BIGINT UNSIGNED NOT NULL,
+    Title         VARCHAR(60)     NOT NULL,
+    ParentTopicId BIGINT UNSIGNED,
+    CONSTRAINT Topic_PK           PRIMARY KEY (Id),
+    CONSTRAINT Topic_to_Parent_FK FOREIGN KEY (ParentTopicId)
+        REFERENCES Topic (Id)
+) ENGINE=InnoDb;
