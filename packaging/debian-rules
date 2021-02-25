@@ -1,4 +1,0 @@
-#!/usr/bin/make -f
-
-install:
-    ln -sf ../rzmvc/.htaccess /usr/share/simplekb/.htaccess
