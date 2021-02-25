@@ -1,0 +1,3 @@
+[submodule "submodules/rzmvc"]
+	path = submodules/rzmvc
+	url = https://github.com/rozniak/rzmvc
