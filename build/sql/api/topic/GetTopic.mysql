@@ -1,5 +1,5 @@
 /**                                                                       */
-/** ArticleLeaf.mysql - Knowledgebase Article Leaf-node                   */
+/** GetTopic.mysql - Get Knowledgebase Topic                              */
 /**                                                                       */
 /** This source-code is part of the simplekb project - a simple PHP-based */
 /** knowledgebase by Oddmatics:                                           */
@@ -8,13 +8,22 @@
 /** Author(s): Rory Fewell <roryf@oddmatics.uk>                           */
 /**                                                                       */
 
-CREATE TABLE ArticleLeaf (
-    Id      BIGINT UNSIGNED NOT NULL,
-    Subject VARCHAR(120)    NOT NULL,
-    Url     VARCHAR(255)    NOT NULL,
-    TopicId BIGINT UNSIGNED NOT NULL,
-    CONSTRAINT ArticleLeaf_PK          PRIMARY KEY (Id),
-    CONSTRAINT ArticleLeaf_AK          UNIQUE (Subject),
-    CONSTRAINT ArticleLeaf_to_Topic_FK FOREIGN KEY (TopicId)
-        REFERENCES Topic (Id)
-) ENGINE=InnoDb;
+DELIMTER $$
+
+CREATE PROCEDURE GetTopic(
+    IN qryId BIGINT UNSIGNED
+)
+DETERMINISTIC
+READS SQL DATA
+BEGIN
+    SELECT topic.Id,
+           topic.Title,
+           topic.ParentTopicId
+      FROM
+          Topic topic
+      WHERE
+          topic.Id = qryId
+      LIMIT 1;
+END;
+
+DELIMITER ;
